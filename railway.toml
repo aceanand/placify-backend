@@ -1,5 +1,6 @@
 [build]
 builder = "nixpacks"
+buildCommand = "mvn clean package -DskipTests"
 
 [deploy]
 startCommand = "java -Dserver.port=$PORT -jar target/placify-backend-1.0.0.jar"
