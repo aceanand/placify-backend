@@ -2,7 +2,13 @@
 nixPkgs = ["openjdk17", "maven"]
 
 [phases.build]
-cmds = ["mvn clean package -DskipTests"]
+cmds = [
+  "mvn clean compile",
+  "mvn package -DskipTests -Dmaven.test.skip=true"
+]
+
+[phases.install]
+cmds = ["ls -la target/"]
 
 [start]
-cmd = "java -Dserver.port=$PORT -jar target/placify-backend-1.0.0.jar"
+cmd = "java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/placify-backend-1.0.0.jar"

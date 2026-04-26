@@ -1,8 +1,9 @@
 [build]
 builder = "nixpacks"
-buildCommand = "mvn clean package -DskipTests"
 
 [deploy]
-startCommand = "java -Dserver.port=$PORT -jar target/placify-backend-1.0.0.jar"
+startCommand = "java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/placify-backend-1.0.0.jar"
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
+healthcheckPath = "/api/test/health"
+healthcheckTimeout = 300
