@@ -1,0 +1,9 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "java -Dserver.port=$PORT -jar target/placify-backend-1.0.0.jar"
+healthcheckPath = "/api/test/hello"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
